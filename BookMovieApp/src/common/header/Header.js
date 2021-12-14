@@ -11,8 +11,8 @@ import { TextField  } from '@material-ui/core';
 
 
 const Header = () => {
-    const [open, setOpen] = useState(true);
-    const [value, setValue] = useState('one');
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(0);
     const loginPopup = () => setOpen(!open);
     const handleChange=(event,newValue)=>setValue(newValue);
 
@@ -41,7 +41,7 @@ const Header = () => {
             {...other}
           >
             {value === index && (
-              <Box sx={{ p: 3 }}>
+              <Box p={2}>
                 <Typography>{children}</Typography>
               </Box>
             )}
