@@ -1,0 +1,21 @@
+.headerContainer {
+	background-color: #222222;
+	height: 36px;
+	padding: 8px 32px 8px 16px;
+	display: flex;
+	justify-content: space-between;
+}
+.headerContainer > img {
+	height: 35px;
+	background-color: #ff7f7f;
+	animation: rotate 8s infinite linear;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotateY(0);
+	}
+	to {
+		transform: rotateY(360deg);
+	}
+}
