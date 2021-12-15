@@ -14,7 +14,8 @@ import { palette } from '@mui/system';
 const Home = () => {
     const [upcomingMovies, setUpcomingMovies] = useState(null);
     const [releasedMovies, setReleasedMovies] = useState(null);
-    const [genre, setGenre] =useState([]);
+    const [genre, setGenre] = useState([]);
+    const [artistName, setArtistName] = useState([]);
     useEffect(() => {
         fetch('http://localhost:8085/api/v1/movies?page=1&limit=10&status=PUBLISHED')
             .then(res => res.json())
@@ -49,6 +50,14 @@ const Home = () => {
           target: { value },
         } = event;
         setGenre(
+          typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+    const handleNameChange = (event) => {
+        const {
+          target: { value },
+        } = event;
+        setArtistName(
           typeof value === 'string' ? value.split(',') : value,
         );
       };
@@ -105,11 +114,12 @@ const Home = () => {
                         <Typography sx={{margin: theme.spacing(1),minWidth:240, maxWidth:240 ,color:"primary.light"}}>FIND MOVIES BY:</Typography>
                         <TextField label="Movie Name" variant="standard" sx={{margin: theme.spacing(1),minWidth:240, maxWidth:240}}/>
                         <FormControl sx={{margin: theme.spacing(1),minWidth:240, maxWidth:240 }}>
-                            <InputLabel variant="standard" >Genre</InputLabel>
+                            <InputLabel variant="standard" placeholder="Genres" >Genres</InputLabel>
                                 <Select
                                 labelId="demo-multiple-checkbox-label"
                                 id="demo-multiple-checkbox"
                                 variant="standard"
+                                placeholder="Genres"
                                 multiple
                                 value={genre}
                                 onChange={handleChange}
@@ -122,6 +132,28 @@ const Home = () => {
                                     <Checkbox checked={genre.indexOf(genres) > -1} />
                                     <ListItemText primary={genres} />
                                     </MenuItem>))
+                                ))}
+                                </Select>
+                        </FormControl>
+                        <FormControl sx={{margin: theme.spacing(1),minWidth:240, maxWidth:240 }}>
+                            <InputLabel variant="standard" placeholder="Artists" >Artists</InputLabel>
+                                <Select
+                                labelId="demo-multiple-checkbox-label"
+                                id="demo-multiple-checkbox"
+                                variant="standard"
+                                placeholder="Artists"
+                                multiple
+                                value={artistName}
+                                onChange={handleNameChange}
+                                renderValue={(selected) => selected.join(', ')}
+                                MenuProps={MenuProps}
+                                >
+                                {releasedMovies && releasedMovies.movies.map((movie) => (
+                                    movie.artists.map(artists => (
+                                            <MenuItem key={artists.id} value={artists.first_name+" "+artists.last_name}>
+                                            <Checkbox checked={artistName.indexOf(artists.first_name+" "+artists.last_name) > -1} />
+                                            <ListItemText primary={artists.first_name+" "+artists.last_name} />
+                                            </MenuItem>))
                                 ))}
                                 </Select>
                         </FormControl>
