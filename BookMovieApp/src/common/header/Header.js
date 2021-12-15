@@ -114,7 +114,7 @@ const Login = ({setOpen}) => {
       noValidate
       autoComplete="off"
         ><br/>  <form>
-                    <TextField label="Username" error={true} onChange={ handleChange("name") } placeholder="Enter user name" fullWidth required /><br/><br/>
+                    <TextField label="Username"  onChange={ handleChange("name") } placeholder="Enter user name" fullWidth required /><br/><br/>
                 <TextField label="Password" onChange={ handleChange("password") } placeholder="Enter user password" type="password" fullWidth required /><br/><br/>
                 <Button type="submit" onClick={submitForm("complete")} variant='contained' color='primary'>Login</Button>
                 </form>
