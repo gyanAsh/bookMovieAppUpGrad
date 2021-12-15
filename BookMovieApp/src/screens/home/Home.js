@@ -5,7 +5,7 @@ import {createTheme} from '@mui/material/styles'
 import {
     ImageListItem, ImageListItemBar, ImageList, Card, TextField,
     Typography, FormControl, Select, MenuItem, InputLabel, Checkbox, ListItemText,
-    OutlinedInput
+    Button
 } from '@mui/material';
 import { palette } from '@mui/system';
 
@@ -166,7 +166,7 @@ const Home = () => {
                         <InputLabel shrink={true} variant="standard" placeholder="Release Date End" >Release Date End</InputLabel><br/>
                             <TextField variant="standard" placeholder="Release Date End" type="date" />
                         </FormControl>
-                  
+                        <Button  sx={{ margin: theme.spacing(1), minWidth: 240, maxWidth: 240 }} type="submit" variant="contained" label="Filter">Apply</Button>
                     </Card>
                 </div>
             </div>
