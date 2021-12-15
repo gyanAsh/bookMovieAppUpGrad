@@ -4,3 +4,19 @@
 	text-align: center;
 	font-size: 1rem;
 }
+.moviesAndFilter {
+	display: flex;
+}
+
+.movies {
+	width: 76%;
+	margin: 16px;
+}
+.movies > img {
+	cursor: pointer;
+}
+
+.filter {
+	margin: 16px;
+	width: 24%;
+}
