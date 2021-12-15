@@ -4,7 +4,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom'
-import { Typography,ImageList  } from '@mui/material';
+import { Typography,ImageList,ImageListItem } from '@mui/material';
 import YouTube from 'react-youtube'
 import './Details.css'
 
@@ -55,7 +55,7 @@ const Details = ({ ...props, baseUrl }) => {
                                     <img
                                         src={`${artist.profile_url}?w=164&h=164&fit=crop&auto=format`}
                                         srcSet={`${artist.profile_url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                        alt={movie.title}
+                                        alt={artist.first_name}
                                         loading="lazy"
                                     />
                                 </ImageListItem>
