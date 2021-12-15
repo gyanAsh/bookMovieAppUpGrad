@@ -157,6 +157,15 @@ const Home = () => {
                                 ))}
                                 </Select>
                         </FormControl>
+                        <FormControl sx={{ margin: theme.spacing(1), minWidth: 240, maxWidth: 240 }}>
+                        <InputLabel shrink={true} variant="standard" placeholder="Release Date Start" >Release Date Start</InputLabel><br/>
+                        <TextField variant="standard" placeholder="Release Date Start" type="date" />
+                               
+                        </FormControl>
+                        <FormControl sx={{ margin: theme.spacing(1), minWidth: 240, maxWidth: 240 }}>
+                        <InputLabel shrink={true} variant="standard" placeholder="Release Date End" >Release Date End</InputLabel><br/>
+                            <TextField variant="standard" placeholder="Release Date End" type="date" />
+                        </FormControl>
                   
                     </Card>
                 </div>
