@@ -7,20 +7,21 @@ import {
     Typography, FormControl, Select, MenuItem, InputLabel, Checkbox, ListItemText,
     Button
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { palette } from '@mui/system';
 
 
 
-const Home = () => {
+const Home = ({baseUrl}) => {
     const [upcomingMovies, setUpcomingMovies] = useState(null);
     const [releasedMovies, setReleasedMovies] = useState(null);
     const [genre, setGenre] = useState([]);
     const [artistName, setArtistName] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:8085/api/v1/movies?page=1&limit=10&status=PUBLISHED')
+        fetch(`http://localhost:8085${baseUrl}movies?page=1&limit=10&status=PUBLISHED`)
             .then(res => res.json())
             .then(data => setUpcomingMovies(data));
-        fetch('http://localhost:8085/api/v1/movies?page=1&limit=10&status=RELEASED')
+        fetch(`http://localhost:8085${baseUrl}movies?page=1&limit=10&status=RELEASED`)
             .then(res => res.json())
             .then(data=>setReleasedMovies(data));
     }, [])
@@ -94,23 +95,24 @@ const Home = () => {
                 <ImageList cols={4} className="movies" rowHeight={350} >
                     {releasedMovies && releasedMovies.movies.map(movie => (
                         <ImageListItem key={movie.id} sx={{ width: 220, maxHeight: 350 }}>
-                            <img
+                            <Link to={`/movie/${movie.id}`} activeClassName="active"><img
                                 src={`${movie.poster_url}?w=164&h=164&fit=crop&auto=format`}
                                 srcSet={`${movie.poster_url}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
                                 alt={movie.title}
                                 loading="lazy"
                                 
                             />
+                            
                             <ImageListItemBar
                                 title={movie.title}
-                                subtitle={<span>Release Date:{ movie.release_date }</span>}
-                            />                            
+                                subtitle={<span>Release Date:{ new Date(movie.release_date).toDateString()}</span>}
+                            /></Link>                         
                         </ImageListItem>
                         
                     ))}
                 </ImageList>
                 <div className="filter">
-                    <Card variant="outlined" sx={{ widht: "100%", height: "auto" }}>
+                    <Card variant="outlined" sx={{width:"100%", height: "auto", margin: theme.spacing(1)}}>
                         <Typography sx={{margin: theme.spacing(1),minWidth:240, maxWidth:240 ,color:"primary.light"}}>FIND MOVIES BY:</Typography>
                         <TextField label="Movie Name" variant="standard" sx={{margin: theme.spacing(1),minWidth:240, maxWidth:240}}/>
                         <FormControl sx={{margin: theme.spacing(1),minWidth:240, maxWidth:240 }}>
@@ -166,7 +168,7 @@ const Home = () => {
                         <InputLabel shrink={true} variant="standard" placeholder="Release Date End" >Release Date End</InputLabel><br/>
                             <TextField variant="standard" placeholder="Release Date End" type="date" />
                         </FormControl>
-                        <Button  sx={{ margin: theme.spacing(1), minWidth: 240, maxWidth: 240 }} type="submit" variant="contained" label="Filter">Apply</Button>
+                        <Button  sx={{ margin: theme.spacing(1), minWidth: 240, maxWidth: 240,color:"primary" }} type="submit" variant="contained" label="Filter">Apply</Button>
                     </Card>
                 </div>
             </div>

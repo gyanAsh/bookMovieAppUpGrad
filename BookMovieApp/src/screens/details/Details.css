@@ -1,0 +1,23 @@
+.backButton {
+	margin: 8px 0px 0px 24px;
+	width: 8rem;
+	height: 24px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	color: inherit;
+	text-decoration: none;
+}
+.detailsContainer {
+	display: flex;
+}
+.leftContainer {
+	width: 20%;
+}
+.middleContainer {
+	width: 60%;
+}
+.rightContainer {
+	width: 20%;
+}
